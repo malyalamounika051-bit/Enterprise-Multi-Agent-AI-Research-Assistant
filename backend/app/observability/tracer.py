@@ -59,12 +59,18 @@ class TraceRecorder:
         }
         self.steps.append(step_data)
         
-        # If LangSmith is active, attempt to log run step
+        # If LangSmith is active, log run step directly to project
         if _langsmith_enabled and _langsmith_client:
             try:
-                # Log step run to LangSmith
-                pass
-            except Exception:
+                _langsmith_client.create_run(
+                    name=f"{agent_name}: {action}",
+                    run_type="chain",
+                    inputs=inputs,
+                    outputs=outputs,
+                    extra={"metadata": {"decision_notes": decision_notes or "", "duration_ms": duration_ms or 0.0}},
+                    project_name=settings.LANGCHAIN_PROJECT or "asterline-ai-assistant"
+                )
+            except Exception as e:
                 pass
 
     def get_trace(self) -> List[Dict[str, Any]]:
