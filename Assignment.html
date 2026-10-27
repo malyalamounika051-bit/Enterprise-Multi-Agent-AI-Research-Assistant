@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Batch 5 — Assignment v2</title><style>@page{size:A4;margin:17mm}*{box-sizing:border-box}body{margin:0;background:#eef2f6;color:#253349;font:15px/1.55 system-ui,sans-serif}main{max-width:900px;margin:30px auto;background:white;padding:45px 52px}h1{font-size:32px;line-height:1.15;margin:12px 0 18px;color:#173350}h2{font-size:20px;color:#173350;margin:25px 0 10px}p{margin:10px 0}li{margin:6px 0}.eyebrow{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:#317577;font-weight:700}.note{border-left:3px solid #317577;padding:10px 15px;background:#edf6f5}.small{font-size:13px;color:#536175}table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:7px 10px;border-bottom:1px solid #dce4ed}th{background:#edf2f7}section{margin:0}code{overflow-wrap:anywhere}@media print{body{background:white;font-size:10.5pt;line-height:1.4}main{margin:0;padding:0;max-width:none}.page{break-after:page}.page:last-child{break-after:auto}h1{font-size:26pt}h2{font-size:15pt;margin-top:18px}li{margin:5px 0}h2{break-after:avoid}tr{break-inside:avoid}}@media(max-width:640px){main{margin:0;padding:25px}h1{font-size:28px}}</style></head><body><main><section class="page"><div class="eyebrow">Batch 5 · Take-home assignment · Version 2</div>
+<h1>A research assistant that remembers</h1>
+<p>Build a multi-agent assistant that helps employees find trustworthy answers in company documentation and continue useful work across conversations.</p>
+<p class="note"><b>Submit:</b> Git repository and accessible LangSmith project.<br><b>Deadline:</b> Oct 27th (Wed) EOD.</p>
+<h2>The problem</h2>
+<p>Asterline Labs is a fictional workflow-monitoring company. Its documentation includes product specifications, pricing, policies, release notes, and incident reports. An employee needs to ask questions, investigate issues, and return later without having to repeat all relevant context.</p>
+<p>The assistant should answer from the supplied documents, recognise uncertainty, and remember selectively. Documents may disagree or describe different points in time. Users may correct earlier information or ask the assistant to forget it.</p>
+<h2>What you receive</h2>
+<p><code>corpus.jsonl</code> contains 75 chunks from 25 documents, including source identifiers and metadata. Use this as the knowledge base for company facts. Keep it unchanged. No prior knowledge of Asterline is needed.</p>
+<h2>Expected outcomes</h2>
+<ul>
+<li><b>Trustworthy research:</b> Answer questions using relevant documentary evidence, cite the supporting chunk IDs and titles, and handle conflicting or missing information honestly.</li>
+<li><b>Useful collaboration:</b> Use at least three agents with distinct responsibilities. Their collaboration should contribute to the result and be understandable from the execution trace.</li>
+<li><b>Continuity:</b> Support follow-up questions and retain useful context across separate sessions, including after restarting the application.</li>
+<li><b>Thoughtful memory:</b> Design what the assistant remembers, what it avoids storing, and how it uses that information. Support corrections and requests to forget. One user's private context must not be exposed to another user.</li>
+<li><b>Usability:</b> Provide a simple interface for conversations and a way for users to inspect and manage what is remembered about them.</li>
+</ul>
+<p>You choose the architecture, memory model, orchestration, storage, and evaluation approach. We are interested in the reasoning behind those choices, not a particular framework or number of components.</p>
+</section>
+<section class="page"><div class="eyebrow">Build, demonstrate, and explain</div>
+<h2>Constraints</h2>
+<ul>
+<li>Use local embeddings and a local vector store. Choose an accessible generation model and document any costs or account requirements; paid services are not required.</li>
+<li>Use LangSmith to make agent behaviour and important decisions inspectable. Use synthetic user data and keep secrets out of code, stored memory, and shared traces.</li>
+<li>Keep remembered context distinct from authoritative company evidence. A remembered statement or previous answer is not sufficient proof of a company fact.</li>
+<li>Provide a documented setup and one command to launch the application. Handle provider failures and rate limits reasonably.</li>
+</ul>
+<p class="small">A local demonstration is sufficient. Production authentication, deployment, and visual polish are not required. A user selector may simulate separate users, but their stored context must remain isolated.</p>
+<h2>What to submit</h2>
+<ol>
+<li><b>A working repository:</b> Application code, unchanged corpus, setup instructions, dependencies, and an environment-variable example without secrets.</li>
+<li><b>A short design note:</b> Explain the agent responsibilities, information flow, memory approach, and important trade-offs. Include an architecture diagram and identify limitations.</li>
+<li><b>Evidence that it works:</b> Create your own reproducible evaluation covering research quality and memory behaviour. Explain what you measured and why, include results and representative failures, and show one improvement driven by those findings.</li>
+<li><b>Inspectable runs:</b> Provide LangSmith access and links to representative runs that demonstrate both successful behaviour and a difficult or failed case. Grant access to <code>radialpulse@nxtwave.co.in</code> or provide an accessible project link.</li>
+<li><b>A brief AI-use disclosure:</b> State which tools you used, what they helped produce, and how you checked their output. If you used none, say so.</li>
+</ol>
+<h2>How your work will be assessed</h2>
+<table><tr><th>Area</th><th>Weight</th></tr>
+<tr><td>Memory design and dependable behaviour</td><td>25%</td></tr>
+<tr><td>Grounded research and answer quality</td><td>20%</td></tr>
+<tr><td>Meaningful multi-agent collaboration</td><td>15%</td></tr>
+<tr><td>Evaluation, failure analysis, and improvement</td><td>20%</td></tr>
+<tr><td>Observability</td><td>10%</td></tr>
+<tr><td>Code quality and reproducibility</td><td>10%</td></tr></table>
+<h2>Walkthrough and ownership</h2>
+<p>AI coding tools are allowed. You remain responsible for understanding and validating the submitted system. Be prepared for a short live walkthrough: explain a design decision, follow a question through a trace, investigate a failure, and adapt the system to a small new requirement within the assignment's scope.</p>
+<p>We may try questions and conversation sequences that are not in your own tests. A polished demonstration alone is not sufficient; clear reasoning, reproducible behaviour, and an honest account of limitations matter.</p>
+</section></main></body></html>
